@@ -6,7 +6,13 @@ public class Obstacle : MonoBehaviour
     {
         if (collision.rigidbody.CompareTag("Player"))
         {
+            Destroy(collision.gameObject);
             Debug.Log("CollisionEnter: " + collision.rigidbody.name);
+        }
+        else
+        {
+            var normal = collision.GetContact(0).normal;
+            collision.rigidbody.AddForce(normal * 30, ForceMode.Impulse);
         }
     }
 
