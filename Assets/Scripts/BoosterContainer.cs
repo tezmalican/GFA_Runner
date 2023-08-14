@@ -11,6 +11,7 @@ public class BoosterContainer : MonoBehaviour
     {
         var boosterInstance = new BoosterInstance(booster);
         _activeBoosters.Add(boosterInstance);
+        booster.OnAdded(this);
     }
 
     public void RemoveBooster(Booster booster)
@@ -32,6 +33,7 @@ public class BoosterContainer : MonoBehaviour
             instance.RemainingDuration -= Time.deltaTime;
             if (instance.RemainingDuration <= 0)
             {
+                instance.Booster.OnRemoved(this);
                 _activeBoosters.RemoveAt(i);
             }
         }

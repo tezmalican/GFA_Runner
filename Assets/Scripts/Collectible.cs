@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Collectible : MonoBehaviour
@@ -6,10 +8,10 @@ public abstract class Collectible : MonoBehaviour
     {
         if (other.attachedRigidbody.CompareTag("Player"))
         {
-            OnCollected();
+            OnCollected(other.gameObject);
             Destroy(gameObject);
         }
     }
 
-    protected abstract void OnCollected();
+    protected abstract void OnCollected(GameObject collectedBy);
 }
